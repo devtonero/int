@@ -1,5 +1,4 @@
 const fs = require("fs");
-const getNotes = () => "Your Notes...";
 // thins
 const addNotes = (title, body) => {
   const notes = loadNotes();
@@ -63,7 +62,6 @@ const loadNotes = () => {
   }
 };
 module.exports = {
-  getNotes,
   addNotes,
   removeNotes,
   listNotes,

@@ -1,14 +1,6 @@
-const { argv } = require("yargs");
+//const { argv } = require("yargs");
 const yargs = require("yargs");
-const {
-  getNotes,
-  addNotes,
-  removeNotes,
-  listNotes,
-  readNotes,
-} = require("./notes");
-const abu = getNotes();
-console.log(abu);
+const { addNotes, removeNotes, listNotes, readNotes } = require("./notes");
 // const add = require("./utilis");
 // const sum = add(3, 2);
 // console.log(sum);
