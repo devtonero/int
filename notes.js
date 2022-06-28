@@ -3,8 +3,9 @@ const getNotes = () => "Your Notes...";
 // thins
 const addNotes = (title, body) => {
   const notes = loadNotes();
-  const duplicate = notes.filter((n) => n.title === title);
-  if (duplicate.length === 0) {
+  //const duplicate = notes.filter((n) => n.title === title);
+  const duplicate = notes.find((n) => n.title === title);
+  if (!duplicate) {
     notes.push({
       title: title,
       body: body,
@@ -29,6 +30,25 @@ const removeNotes = (title) => {
   }
 };
 
+const listNotes = () => {
+  const notes = loadNotes();
+  console.log(`Your notse:`);
+  notes.forEach((n) => {
+    console.log(n.title);
+  });
+};
+
+const readNotes = (title) => {
+  const notes = loadNotes();
+  const data = notes.find((n) => n.title === title);
+
+  if (data) {
+    console.log(`the title: ${data.title}; the body: ${data.body}`);
+  } else {
+    console.log(`Their is no note found with the title ${title}`);
+  }
+};
+
 const saveNotes = (notes) => {
   const noteJson = JSON.stringify(notes);
   fs.writeFileSync("notes.json", noteJson);
@@ -46,4 +66,6 @@ module.exports = {
   getNotes,
   addNotes,
   removeNotes,
+  listNotes,
+  readNotes,
 };

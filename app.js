@@ -1,6 +1,12 @@
 const { argv } = require("yargs");
 const yargs = require("yargs");
-const { getNotes, addNotes, removeNotes } = require("./notes");
+const {
+  getNotes,
+  addNotes,
+  removeNotes,
+  listNotes,
+  readNotes,
+} = require("./notes");
 const abu = getNotes();
 console.log(abu);
 // const add = require("./utilis");
@@ -51,7 +57,7 @@ yargs.command({
   command: "list",
   describe: "List all notes",
   handler: () => {
-    console.log("Listing all notes");
+    listNotes();
   },
 });
 
@@ -60,8 +66,15 @@ yargs
   .command({
     command: "read",
     describe: "read a notes",
-    handler: () => {
-      console.log("reading all notes");
+    builder: {
+      title: {
+        describe: "read note",
+        demandOption: true,
+        type: "string",
+      },
+    },
+    handler(argv) {
+      readNotes(argv.title);
     },
   })
   .parse();
